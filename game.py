@@ -1,5 +1,6 @@
 from argparse import ArgumentError
 from curses.ascii import isalpha, isdigit
+import time
 
 
 class Player:
@@ -132,6 +133,16 @@ def player_window():
         print(f"________________________________________________________________________________________________________")
 
 def game_start():
-    player_window()
+    time.sleep(5)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|       You are an adventurer in a land without magic. Many mystical creatures roam the lands,")
+    print("             yet their origins remain unknown to even the most learned of scholars.")
+    print("               The only known way to combat the many monsters that populate this ")
+    print("                          world is through brute force and dumb luck...")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
 
 intro()

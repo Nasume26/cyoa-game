@@ -68,6 +68,12 @@ def intro():
                     print("|                                                                                                      |")
                     print("|                                                                                                      |")
                     print("________________________________________________________________________________________________________")
+                    global player
+                    player = Player({name}, {age}, 10, 10, 10, 5)
+                    game_start()
+
+
+
                 elif response_intro_one[0].lower() == "c":
                     print("________________________________________________________________________________________________________")
                     print("|                                                                                                      |")
@@ -77,6 +83,22 @@ def intro():
                     print("|                                                                                                      |")
                     print("|                                                                                                      |")
                     print("________________________________________________________________________________________________________")
+                    player = Player({name}, {age}, 10, 10, 10, 5)
+                    game_start()
+                else:
+                    print("________________________________________________________________________________________________________")
+                    print("|                                                                                                      |")
+                    print("|                                                                                                      |")
+                    print(f"|         ... What? Listen I'm not the most advanced program out there. This isn't")
+                    print(f"                     Skyrim your playing here {name}. Try to stick to the given")
+                    print(f"                           responses. What even is a {response_intro_one}??")
+                    print("                          Nevermind let's just get started...")
+                  
+                    print("|                                                                                                      |")
+                    print("|                                                                                                      |")
+                    print("________________________________________________________________________________________________________")
+                    player = Player({name}, {age}, 10, 10, 10, 5)
+                    game_start()
 
                 
             else:
@@ -104,7 +126,15 @@ def intro():
   
 
 def player_window():
-    print("Test")
+        print(f"________________________________________________________________________________________________________")
+        print(f"| Name: {str(*player.name)}                                                                    ")
+        print(f"| Age:  {str(*player.age)}                           ")
+        print(f"|________________________                               ")
+        print(f"|       Stats:                                                                    ")
+        print(f"|   HP: {player.hp}                                             ")
+        print(f"________________________________________________________________________________________________________")
 
+def game_start():
+    player_window()
 
 intro()

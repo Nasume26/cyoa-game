@@ -1,7 +1,8 @@
 from argparse import ArgumentError
 from curses.ascii import isalpha, isdigit
+import random
 import time
-
+import sys
 
 class Player:
     def __init__(self, name, age, hp, defense, atk, score, inv):
@@ -155,10 +156,58 @@ def game_start():
     print("________________________________________________________________________________________________________")
     print("|                                                                                                      |")
     print("|                                                                                                      |")
-    print("|       Currently you are on a quest given to you by the most respected ")
+    print("|       Currently you are on a quest given to you by the most respected scholar in the nation,")
+    print("               Archibald The Wise. You are to investigate the strange weather patterns")
+    print("                  Ocurring in the Orange Mountains. You are close to your goal but...")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    time.sleep(5)
+    troll = NPC("troll", 6000, 4, 3, 0)
+    player_window()
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|       Suddenly you are accosted by a troll! He seems quite unpleasent and poised to attack...")
 
     print("|                                                                                                      |")
     print("|                                                                                                      |")
     print("________________________________________________________________________________________________________")
+    print("Do you HIT or RUN?")
+    pinput = input("")
+    player.hp = 100
+    time.sleep(2)
     player_window()
+    attack_mechanics(player, troll, pinput)
+
+
+def attack_mechanics(player, monster,pinput):
+    while monster.hp > 0:
+        if pinput[0].lower() == "h":
+            does_hit = random.randint(0, 10)
+            if does_hit % 2 == 0:
+                monster.hp = monster.hp - player.atk
+                print(f"A solid hit against the {monster.name}! They have {monster.hp} HP remaining!")
+                time.sleep(2)
+            else:
+                player.hp = player.hp - monster.atk
+                print(f"The {monster.name} lands a hit against you! You have {player.hp} HP remaining!")
+            if player.hp <= 0:
+                break
+        
+                
+        else:
+            print("FAILURE")
+    if player.hp <= 0:
+        print("________________________________________________________________________________________________________")
+        print("|                                                                                                      |")
+        print("|                                                                                                      |")
+        print("|                                        YOU HAVE DIED......")
+        print(f"                                       SCORE: {player.score}")
+        print("|                                                                                                      |")
+        print("|                                                                                                      |")
+        print("________________________________________________________________________________________________________")
+        sys.exit("You have failed")
+
+
 intro()

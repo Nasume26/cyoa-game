@@ -4,13 +4,14 @@ import time
 
 
 class Player:
-    def __init__(self, name, age, hp, defense, atk, score):
+    def __init__(self, name, age, hp, defense, atk, score, inv):
         self.name = name
         self.age = age
         self.hp = hp
         self.defense = defense
         self.atk = atk
         self.score = score
+        self.inv = inv
 
 
 class NPC:
@@ -65,7 +66,7 @@ def intro():
                     print("|                                                                                                      |")
                     print("________________________________________________________________________________________________________")
                     global player
-                    player = Player({name}, {age}, 10, 10, 10, 5)
+                    player = Player({name}, {age}, 10, 10, 10, 5, ["sword", "shield"])
                     game_start()
 
 
@@ -79,7 +80,7 @@ def intro():
                     print("|                                                                                                      |")
                     print("|                                                                                                      |")
                     print("________________________________________________________________________________________________________")
-                    player = Player({name}, {age}, 10, 10, 10, 5)
+                    player = Player({name}, {age}, 10, 10, 10, 5, ["sword", "shield"])
                     game_start()
                 else:
                     print("________________________________________________________________________________________________________")
@@ -93,7 +94,7 @@ def intro():
                     print("|                                                                                                      |")
                     print("|                                                                                                      |")
                     print("________________________________________________________________________________________________________")
-                    player = Player({name}, {age}, 10, 10, 10, 5)
+                    player = Player({name}, {age}, 10, 10, 10, 5, ["sword", "shield"])
                     game_start()
 
                 
@@ -122,15 +123,21 @@ def intro():
   
 
 def player_window():
-        print(f"________________________________________________________________________________________________________")
-        print(f"| Name: {str(*player.name)}                                                       SCORE: {player.score}                                                               ")
-        print(f"| Age:  {str(*player.age)}                           ")
-        print(f"|________________________                               ")
-        print(f"|       Stats:                                                                    ")
-        print(f"|   Hp: {player.hp}                                             ")
-        print(f"|   Def: {player.defense} ")
-        print(f"|   Atk: {player.atk}")
-        print(f"________________________________________________________________________________________________________")
+    def inventory():
+        for i in player.inv:
+            print(f"|{str(i)}, ") 
+    print(f"________________________________________________________________________________________________________")
+    print(f"| Name: {str(*player.name)}                                                       SCORE: {player.score}                                                               ")
+    print(f"| Age:  {str(*player.age)}                           ")
+    print(f"|________________________                               ")
+    print(f"|       Stats:                                                                    ")
+    print(f"|   Hp: {player.hp}                                             ")
+    print(f"|   Def: {player.defense} ")
+    print(f"|   Atk: {player.atk}")
+    print(f"|_________________________")
+    print(f"| INVENTORY:")
+    inventory()
+    print(f"________________________________________________________________________________________________________")
 
 def game_start():
     time.sleep(5)
@@ -138,11 +145,20 @@ def game_start():
     print("|                                                                                                      |")
     print("|                                                                                                      |")
     print("|       You are an adventurer in a land without magic. Many mystical creatures roam the lands,")
-    print("             yet their origins remain unknown to even the most learned of scholars.")
-    print("               The only known way to combat the many monsters that populate this ")
-    print("                          world is through brute force and dumb luck...")
+    print("|             yet their origins remain unknown to even the most learned of scholars.")
+    print("|               The only known way to combat the many monsters that populate this ")
+    print("|                          world is through brute force and dumb luck...")
     print("|                                                                                                      |")
     print("|                                                                                                      |")
     print("________________________________________________________________________________________________________")
+    time.sleep(5)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|       Currently you are on a quest given to you by the most respected ")
 
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    player_window()
 intro()

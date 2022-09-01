@@ -163,7 +163,7 @@ def game_start():
     print("|                                                                                                      |")
     print("________________________________________________________________________________________________________")
     time.sleep(5)
-    troll = NPC("troll", 6000, 4, 3, 0)
+    troll = NPC("troll", 6, 4, 3, 0)
     player_window()
     print("________________________________________________________________________________________________________")
     print("|                                                                                                      |")
@@ -175,15 +175,22 @@ def game_start():
     print("________________________________________________________________________________________________________")
     print("Do you HIT or RUN?")
     pinput = input("")
-    player.hp = 100
     time.sleep(2)
     player_window()
     attack_mechanics(player, troll, pinput)
+    print("This is where we go")
+    print('And This is just a test')
 
 
 def attack_mechanics(player, monster,pinput):
+    chances = 3
+    has_escaped = False
+    chance_flag_text = False
+
     while monster.hp > 0:
-        if pinput[0].lower() == "h":
+        
+
+        def attack_logic(player, monster, pinput):
             does_hit = random.randint(0, 10)
             if does_hit % 2 == 0:
                 monster.hp = monster.hp - player.atk
@@ -192,12 +199,46 @@ def attack_mechanics(player, monster,pinput):
             else:
                 player.hp = player.hp - monster.atk
                 print(f"The {monster.name} lands a hit against you! You have {player.hp} HP remaining!")
-            if player.hp <= 0:
-                break
-        
+                time.sleep(2)
+            
+
+        if pinput[0].lower() == "h":
+          print(f"YOU ATTACK THE {monster.name} HEAD ON!!!")
+          attack_logic(player,monster,pinput)
                 
-        else:
-            print("FAILURE")
+        elif pinput[0].lower() =="r":
+           
+            while chances >0:
+                does_escape = random.randint(0,20)
+                if does_escape >= 19:
+                    print("YOU SUCCEDED IN ESCAPING!")
+                    has_escaped = True
+                    break
+                else:
+                    chances= chances -1
+                    print(f"You couldn't get away, you have {str(chances + 1)} chances to escape remaining...")
+                    time.sleep(2)
+                
+                if chances <= 0:
+                    break
+        
+        if player.hp <= 0:
+            break
+        if chances <= 0:
+            if chance_flag_text == False:
+                print(f"You are unable to escape! You must face the {monster.name} head on!")
+                chance_flag_text = True
+                attack_logic(player,monster,pinput)
+            else:
+                attack_logic(player,monster,pinput)
+            
+
+        if has_escaped == True:
+            break
+    
+    if monster.hp <= 0:
+        print(f"You have succesfully defeated the {monster.name}!")
+    
     if player.hp <= 0:
         print("________________________________________________________________________________________________________")
         print("|                                                                                                      |")
@@ -208,6 +249,8 @@ def attack_mechanics(player, monster,pinput):
         print("|                                                                                                      |")
         print("________________________________________________________________________________________________________")
         sys.exit("You have failed")
+
+    
 
 
 intro()

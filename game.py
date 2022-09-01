@@ -1,8 +1,3 @@
-
-
-
-
-
 from argparse import ArgumentError
 from curses.ascii import isalpha, isdigit
 
@@ -127,11 +122,13 @@ def intro():
 
 def player_window():
         print(f"________________________________________________________________________________________________________")
-        print(f"| Name: {str(*player.name)}                                                                    ")
+        print(f"| Name: {str(*player.name)}                                                       SCORE: {player.score}                                                               ")
         print(f"| Age:  {str(*player.age)}                           ")
         print(f"|________________________                               ")
         print(f"|       Stats:                                                                    ")
-        print(f"|   HP: {player.hp}                                             ")
+        print(f"|   Hp: {player.hp}                                             ")
+        print(f"|   Def: {player.defense} ")
+        print(f"|   Atk: {player.atk}")
         print(f"________________________________________________________________________________________________________")
 
 def game_start():

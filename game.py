@@ -25,16 +25,16 @@ class NPC:
         self.atk = atk
         self.rep = rep
 
-data = ["New Game"]
+data = []
 
 current_date= str(datetime.now())
 
-f_csv = open("./game-log.csv", "w")
-writer = csv.writer(f_csv)
+# f_csv = open("./game-log.csv", "w")
+# writer = csv.writer(f_csv)
 
 def intro():
 
-    data.append(current_date)
+    # data.append(current_date)
     print("________________________________________________________________________________________________________")
     print("|                                                                                                      |")
     print("|                                                                                                      |")
@@ -45,7 +45,7 @@ def intro():
     while True:
         global age
         age = input("")
-        data.append(f"Age: {age}")
+        data.append(f"{current_date}: Age: {age}")
         if age.isnumeric():
             if int(age) >= 18:
                 print("________________________________________________________________________________________________________")
@@ -57,7 +57,7 @@ def intro():
                 print("________________________________________________________________________________________________________")
                 global name
                 name = input("")
-                data.append(name)
+                data.append(f"{current_date}: {name}")
                 print("________________________________________________________________________________________________________")
                 print("|                                                                                                      |")
                 print("|                                                                                                      |")
@@ -67,7 +67,7 @@ def intro():
                 print("|                                                                                                      |")
                 print("________________________________________________________________________________________________________")
                 response_intro_one = input("(Continue or What):  ")
-                data.append(f"entered {response_intro_one}")
+                data.append(f"{current_date}: entered {response_intro_one}")
                 if response_intro_one[0].lower() == "w":
                     print("________________________________________________________________________________________________________")
                     print("|                                                                                                      |")
@@ -186,15 +186,18 @@ def game_start():
     print("________________________________________________________________________________________________________")
     print("Do you HIT or RUN?")
     pinput = input("")
-    data.append(pinput)
+    data.append(f"{current_date}: {pinput}")
     player.hp = 100
     time.sleep(2)
     player_window()
     attack_mechanics(player, troll, pinput)
     print("This is where we go")
     print('And This is just a test')
-    writer.writerow(data)
-    f_csv.close()
+    with open("game-log.log", mode="w", encoding="utf-8") as my_log:
+        for i in data:
+            my_log.write(f" {str(i)} |\n")
+    # writer.writerow(data)
+    # f_csv.close()
 
 
 def attack_mechanics(player, monster,pinput):
@@ -203,7 +206,8 @@ def attack_mechanics(player, monster,pinput):
     chance_flag_text = False
 
     if pinput[0].lower() == "h":
-        data.append(f"Began attacking {monster.name}")
+        data.append(f"{current_date}: Began attacking {monster.name}")
+        print(f"YOU ATTACK THE {monster.name} HEAD ON!!!")
 
     while monster.hp > 0:
         
@@ -211,19 +215,18 @@ def attack_mechanics(player, monster,pinput):
         def attack_logic(player, monster, pinput):
             does_hit = random.randint(0, 10)
             if does_hit % 2 == 0:
-                data.append("Hit!")
+                data.append(f"{current_date}: Hit!")
                 monster.hp = monster.hp - player.atk
                 print(f"A solid hit against the {monster.name}! They have {monster.hp} HP remaining!")
                 time.sleep(2)
             else:
-                data.append("Damaged!")
+                data.append(f"{current_date}: Damaged!")
                 player.hp = player.hp - monster.atk
                 print(f"The {monster.name} lands a hit against you! You have {player.hp} HP remaining!")
                 time.sleep(2)
             
 
         if pinput[0].lower() == "h":
-          print(f"YOU ATTACK THE {monster.name} HEAD ON!!!")
           attack_logic(player,monster,pinput)
                 
         elif pinput[0].lower() =="r":
@@ -231,12 +234,12 @@ def attack_mechanics(player, monster,pinput):
             while chances >0:
                 does_escape = random.randint(0,20)
                 if does_escape >= 19:
-                    data.append("ESCAPED!!!")
+                    data.append(f"{current_date}: ESCAPED!!!")
                     print("YOU SUCCEDED IN ESCAPING!")
                     has_escaped = True
                     break
                 else:
-                    data.append(f"Could Not Get Away {str(chances + 1)}")
+                    data.append(f"{current_date}: Could Not Get Away {str(chances + 1)}")
                     chances= chances -1
                     print(f"You couldn't get away, you have {str(chances + 1)} chances to escape remaining...")
                     time.sleep(2)
@@ -248,7 +251,7 @@ def attack_mechanics(player, monster,pinput):
             break
         if chances <= 0:
             if chance_flag_text == False:
-                data.append(f"Failled to escape, begun attacking {monster.name}")
+                data.append(f"{current_date}: Failled to escape, begun attacking {monster.name}")
                 print(f"You are unable to escape! You must face the {monster.name} head on!")
                 chance_flag_text = True
                 attack_logic(player,monster,pinput)
@@ -260,11 +263,11 @@ def attack_mechanics(player, monster,pinput):
             break
     
     if monster.hp <= 0:
-        data.append(f"Succesfully killed {monster.name}")
+        data.append(f"{current_date}: Succesfully killed {monster.name}")
         print(f"You have succesfully defeated the {monster.name}!")
     
     if player.hp <= 0:
-        data.append(f"Player lost score was {player.score}")
+        data.append(f"{current_date}: Player lost score was {player.score}")
         print("________________________________________________________________________________________________________")
         print("|                                                                                                      |")
         print("|                                                                                                      |")
@@ -273,8 +276,11 @@ def attack_mechanics(player, monster,pinput):
         print("|                                                                                                      |")
         print("|                                                                                                      |")
         print("________________________________________________________________________________________________________")
-        writer.writerow(data)
-        f_csv.close()
+        # writer.writerow(data)
+        # f_csv.close()
+        with open("game-log.log", mode="w", encoding="utf-8") as my_log:
+            for i in data:
+                my_log.write(f" {str(i)} |\n")
         sys.exit("You have failed")
 
     

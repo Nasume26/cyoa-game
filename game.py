@@ -239,11 +239,68 @@ def game_start():
     cultist_one = NPC("cultist", 45, 10, 5,0)
     pinput=input("HIT or RUN?")
     attack_mechanics(player, cultist_one, pinput)
+    player.score = player.score + 5
+    player.hp = 20
+    player.atk = 20
+    print("You gained 5 HP and 5 ATK after defeating the cultist!")
+    player_window()
+    data.append(f"{current_date()}: Gained 5 HP and 5 ATK.")
+    time.sleep(5)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|       The cultist strugles to keep standing as the life begins to leave his eyes. Battered and Beaten ")
+    print("|              he manages to speak for the last time, his final words coarse and rough...")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    time.sleep(5)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|           'Struggle and fall adventurer. That is your destiny from this moment onwards. ")
+    print("|              You may have defeated me, but your destiny has unwittingly become tied")
+    print("|                     to the end of all things. You will not die a peaceful death, ")
+    print("|                        and with my dying breath I curse you and your kin for")
+    print("|                                          all eternity...'")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    time.sleep(5)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|       And with those words the cultist falls, the icy winds of the mountain peak cutting ")
+    print("|                  just a bit deeper into your skin. You now have a choice.")
+    print("|                    Do you enter the circle and continue your journey,")
+    print("|                 or do you return home and try to forget all you have seen?")
 
-    with open("game-log.log", mode="w", encoding="utf-8") as my_log:
-        for i in data:
-            my_log.write(f" {str(i)} |\n")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    game_warp_one()
 
+    # with open("game-log.log", mode="w", encoding="utf-8") as my_log:
+    #     for i in data:
+    #         my_log.write(f" {str(i)} |\n")
+
+def game_warp_one ():
+    pinput = input("Continue or End: ")
+
+    if pinput[0].lower() == "c":
+        crag_rock_start
+        # CONTINUE JOURNEY
+
+    elif pinput[0].lower() == "e":
+        data
+        # FIRST ENDING
+    else:
+        data
+        # CALL THE SAME FUNC FOR C
+
+
+def crag_rock_start():
+    print("Player has chosen Crag Rock")
 
 def attack_mechanics(player, monster,pinput):
     chances = 3

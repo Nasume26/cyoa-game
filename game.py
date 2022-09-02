@@ -188,11 +188,10 @@ def game_start():
     pinput = input("")
     data.append(f"{current_date()}: {pinput}")
     time.sleep(2)
-    player_window()
     attack_mechanics(player, troll, pinput)
     print("You gained 5 HP and 5 ATK after defeating the troll!")
     data.append(f"{current_date()}: Gained 5 HP and 5 ATK")
-    time.sleep(2)
+    time.sleep(7)
     player.score = player.score + 5
     player.hp = 15
     player.atk = 15
@@ -236,7 +235,7 @@ def game_start():
     print("|                                                                                                      |")
     print("|                                                                                                      |")
     print("________________________________________________________________________________________________________")
-    cultist_one = NPC("cultist", 45, 10, 5,0)
+    cultist_one = NPC("cultist", 45, 10, 4,0)
     pinput=input("HIT or RUN?")
     attack_mechanics(player, cultist_one, pinput)
     player.score = player.score + 5
@@ -280,27 +279,30 @@ def game_start():
     print("________________________________________________________________________________________________________")
     game_warp_one()
 
-    # with open("game-log.log", mode="w", encoding="utf-8") as my_log:
-    #     for i in data:
-    #         my_log.write(f" {str(i)} |\n")
+
 
 def game_warp_one ():
     pinput = input("Continue or End: ")
-
+   
     if pinput[0].lower() == "c":
-        crag_rock_start
+        data.append(f"{current_date()}: Player continued to Crag Rock")
+        crag_rock_start()
         # CONTINUE JOURNEY
 
     elif pinput[0].lower() == "e":
-        data
+        data.append(f"{current_date()}: Player ended their journey. Ending One")
         # FIRST ENDING
     else:
-        data
+        data.append(f"{current_date()}: Player entered {pinput} sending to Crag Rock")
+        crag_rock_start()
         # CALL THE SAME FUNC FOR C
 
 
 def crag_rock_start():
     print("Player has chosen Crag Rock")
+    with open("game-log.log", mode="w", encoding="utf-8") as my_log:
+        for i in data:
+            my_log.write(f" {str(i)} |\n")
 
 def attack_mechanics(player, monster,pinput):
     chances = 3

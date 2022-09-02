@@ -190,10 +190,56 @@ def game_start():
     time.sleep(2)
     player_window()
     attack_mechanics(player, troll, pinput)
-    print("You gained 5 HP and 5 Def after defeating the troll!")
+    print("You gained 5 HP and 5 ATK after defeating the troll!")
+    data.append(f"{current_date()}: Gained 5 HP and 5 ATK")
+    time.sleep(2)
+    player.score = player.score + 5
     player.hp = 15
     player.atk = 15
     player_window()
+    time.sleep(2)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|       You have done well to defeat the Troll. But be warned he was but a drop of water in an")
+    print("|         ever flowing glass. Moving on you make your way towards the peak of the mountains")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    time.sleep(5)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|  You reach the summit of the mountain, gazing upon the land below. It is quite a wonderous sight...")
+    print("|             However your attention is drawn to something quite peculiar, something ")
+    print("|                               you can't quite describe... ")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    time.sleep(5)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|       At the top of the mountain an impossible object stands before you. a two dimensional" )
+    print("|                   'circle' of sorts. It glows a deeep shade of blue and hums")
+    print("|                                       ominously....")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    time.sleep(5)
+    print("________________________________________________________________________________________________________")
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("|       And suddenly with a blinding flash, a figure emerges from the circle, clad in robes")
+    print("                        of crimson. They do not appear friendly and appear to ")
+    print("|                                be getting ready to attack...")    
+    print("|                                                                                                      |")
+    print("|                                                                                                      |")
+    print("________________________________________________________________________________________________________")
+    cultist_one = NPC("cultist", 45, 10, 5,0)
+    pinput=input("HIT or RUN?")
+    attack_mechanics(player, cultist_one, pinput)
+
     with open("game-log.log", mode="w", encoding="utf-8") as my_log:
         for i in data:
             my_log.write(f" {str(i)} |\n")
@@ -203,16 +249,17 @@ def attack_mechanics(player, monster,pinput):
     chances = 3
     has_escaped = False
     chance_flag_text = False
+    player_window()
 
     if pinput[0].lower() == "h":
         data.append(f"{current_date()}: Began attacking {monster.name}")
         print(f"YOU ATTACK THE {monster.name} HEAD ON!!!")
     elif pinput[0].lower() == "r":
         data.append(f"{current_date()}: Attempted to run from {monster.name}")
-        print(f"(You begin trying to escape from the {monster.name}")
+        print(f"You begin trying to escape from the {monster.name}")
     else:
-        data.append(f"{current_date()}: Entered invalid input of {pinput}")
-        print(f"You can't just type whatever you want {player.name}! Defaulting to fight mechanics...")
+        data.append(f"{current_date()}: Entered invalid input of {pinput}, attacking {monster.name}...")
+        print(f"You can't just type whatever you want {str(*player.name)} ! Defaulting to fight mechanics...")
 
 
     while monster.hp > 0:
@@ -221,12 +268,12 @@ def attack_mechanics(player, monster,pinput):
         def attack_logic(player, monster, pinput):
             does_hit = random.randint(0, 10)
             if does_hit % 2 == 0:
-                data.append(f"{current_date()}: Hit!")
+                data.append(f"{current_date()}: Hit the {monster.name}! They have {monster.hp} hp remaining")
                 monster.hp = monster.hp - player.atk
                 print(f"A solid hit against the {monster.name}! They have {monster.hp} HP remaining!")
                 time.sleep(2)
             else:
-                data.append(f"{current_date()}: Damaged!")
+                data.append(f"{current_date()}: {monster.name} damaged player! They have {player.hp} hp remaining")
                 player.hp = player.hp - monster.atk
                 print(f"The {monster.name} lands a hit against you! You have {player.hp} HP remaining!")
                 time.sleep(2)

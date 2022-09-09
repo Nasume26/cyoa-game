@@ -11,6 +11,6 @@ cd ../vagrant/app
 pwd
 
 
-echo -----Starting game-----
-python3 game.py
+# echo -----Starting game-----
+# python3 game.py
 

@@ -15,6 +15,7 @@
 2. Uncomment the Vagrant.Configure lines of code from lines 1 to 16.
 3. Comment out the Vagrant.Configure lines from lines 21 to 32.
 
+### Starting The Game
 1. After you have Vagrant and VirtualBox or VMWare installed, you will need to open a terminal or powershell window. 
 2. CD in to wherever you have saved this repository.
 3. Run the command `vagrant up`

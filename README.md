@@ -1,13 +1,13 @@
 # Welcome To GAMENAMEHERE!
 
-*In order to play this game you will need to have Vagrant installed on your machine. A full list of requirements can be found below:
+* In order to play this game you will need to have Vagrant installed on your machine. A full list of requirements can be found below:
 
 -Vagrant (in order to launch the game)
   You can install vagrant **[HERE] (https://www.vagrantup.com/downloads)** using brew or the download link! 
 -VirtualBox (if you are using a Windows or an Intel/AMD based Mac)
 -VMWareFusion (If you are using an M1 arm based Mac)
 
-##Instructions
+## Instructions
 
 
 **If You are using an M1/M2 ARM based Mac please do the following FIRST!!!! If not IGNORE THIS STEP**

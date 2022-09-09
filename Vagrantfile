@@ -13,6 +13,7 @@
 #     SHELL
 #     game.vm.provision "shell", path: "env/script.sh"
 #   end
+# end
 
 
 
@@ -27,3 +28,4 @@ Vagrant.configure("2") do |config|
     end
     game.vm.provision "shell", path: "env/script.sh"
   end
+end
